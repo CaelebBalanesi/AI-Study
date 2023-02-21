@@ -20,7 +20,7 @@ class Car{
         if(controlType!="DUMMY"){
             this.sensor=new Sensor(this);
             this.brain=new NeuralNetwork(
-                [this.sensor.rayCount,64,32,16,4]
+                [this.sensor.rayCount,16,8,4]
             );
         }
         this.controls=new Controls(controlType);
@@ -54,6 +54,8 @@ class Car{
             this.#move();
             this.polygon=this.#createPolygon();
             this.damaged=this.#assessDamage(roadBorders,traffic);
+        }else {
+            return;
         }
         if(this.highScore < this.score){
             this.highScore = this.score;
